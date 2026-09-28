@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="곧 공개됩니다.">
+    <meta name="theme-color" content="#f7f6f3">
+    <title>FUR:RAID 2026 | 곧 공개</title>
+    <link rel="icon" href="./favicon.ico" sizes="any">
+    <link rel="icon" type="image/png" sizes="32x32" href="./assets/favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="./assets/favicon/favicon-16x16.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="./assets/favicon/apple-touch-icon.png">
+    <link rel="stylesheet" href="./styles.css">
+    <script src="./site-config.js" defer></script>
+    <script src="./app.js" defer></script>
+  </head>
+  <body>
+    <main class="page is-coming-soon">
+      <div class="coming-soon" id="coming-soon">
+        <h1 id="coming-soon-title">곧 공개됩니다.</h1>
+      </div>
+      <div id="release-content" hidden>
+        <header class="intro">
+          <p class="eyebrow" id="eyebrow"></p>
+          <h1 id="title">Streaming</h1>
+          <p class="description" id="description"></p>
+        </header>
+
+        <section class="player" id="spotify-player" aria-label="Spotify 플레이어" hidden></section>
+
+        <section id="stream-section" aria-label="스트리밍 서비스">
+          <ul class="stream-list" id="stream-list"></ul>
+          <noscript><p class="empty"><span lang="ko">JavaScript를 켜 주세요.</span><br><span lang="en">Please enable JavaScript.</span><br><span lang="ja">JavaScriptを有効にしてください。</span></p></noscript>
+        </section>
+      </div>
+
+      <div class="language-control" id="language-control" hidden>
+        <button class="language-trigger" id="language-trigger" type="button" aria-haspopup="menu" aria-expanded="false" aria-controls="language-menu">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><circle cx="12" cy="12" r="9"/><ellipse cx="12" cy="12" rx="4" ry="9"/><path d="M3 12h18"/></svg>
+          <span id="language-current">한국어</span>
+          <svg class="language-chevron" width="12" height="12" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="m4 10 4-4 4 4"/></svg>
+        </button>
+        <div class="language-menu" id="language-menu" role="menu" aria-label="언어" hidden>
+          <button type="button" role="menuitemradio" aria-checked="true" tabindex="-1" data-language="ko" lang="ko"><span>한국어</span><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="m5 12 4 4 10-10"/></svg></button>
+          <button type="button" role="menuitemradio" aria-checked="false" tabindex="-1" data-language="en" lang="en"><span>English</span><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="m5 12 4 4 10-10"/></svg></button>
+          <button type="button" role="menuitemradio" aria-checked="false" tabindex="-1" data-language="ja" lang="ja"><span>日本語</span><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="m5 12 4 4 10-10"/></svg></button>
+        </div>
+      </div>
+    </main>
+    <template id="stream-row">
+      <li>
+        <div class="stream-row">
+          <span class="stream-icon"><img width="40" height="40" alt=""></span>
+          <span class="stream-copy">
+            <span class="stream-name"></span>
+            <span class="stream-status"></span>
+          </span>
+          <svg class="arrow" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14m-6-6 6 6-6 6"/></svg>
+        </div>
+      </li>
+    </template>
+  </body>
+</html>
