@@ -4,6 +4,7 @@ window.siteConfig = {
   locales: {
     ko: {
       comingSoonTitle: "곧 공개됩니다.",
+      collaboration: "FUR:RAID 2026과 SNOWRICE STUDIO의 컬래버레이션",
       comingSoonPageTitle: "FUR:RAID 2026 | 곧 공개",
       pageTitle: "FUR:RAID 2026 메인 테마곡",
       eyebrow: "메인 테마곡 · 컬래버레이션",
@@ -17,6 +18,7 @@ window.siteConfig = {
     },
     en: {
       comingSoonTitle: "Coming soon.",
+      collaboration: "FUR:RAID 2026 in collaboration with SNOWRICE STUDIO",
       comingSoonPageTitle: "FUR:RAID 2026 | Coming Soon",
       pageTitle: "FUR:RAID 2026 Main Theme",
       eyebrow: "MAIN THEME · COLLABORATION",
@@ -30,6 +32,7 @@ window.siteConfig = {
     },
     ja: {
       comingSoonTitle: "近日公開。",
+      collaboration: "FUR:RAID 2026とSNOWRICE STUDIOのコラボレーション",
       comingSoonPageTitle: "FUR:RAID 2026 | 近日公開",
       pageTitle: "FUR:RAID 2026 メインテーマ曲",
       eyebrow: "メインテーマ曲 · コラボレーション",

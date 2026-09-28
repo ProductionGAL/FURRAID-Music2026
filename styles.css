@@ -1,3 +1,32 @@
+@font-face {
+  font-family: "Wanted Sans";
+  src: url("./assets/fonts/WantedSansVariable.woff2") format("woff2");
+  font-style: normal;
+  font-weight: 400 1000;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Zalando Sans";
+  src: url("./assets/fonts/ZalandoSansVariable.woff2") format("woff2");
+  font-style: normal;
+  font-weight: 200 900;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Zen Kaku Gothic New";
+  src: url("./assets/fonts/ZenKakuGothicNew-Regular.woff2") format("woff2");
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Zen Kaku Gothic New";
+  src: url("./assets/fonts/ZenKakuGothicNew-Bold.woff2") format("woff2");
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+}
+
 :root {
   color-scheme: light;
   --canvas: #f7f6f3;
@@ -26,20 +55,50 @@
   --control-height: 44px;
   --menu-width: 184px;
   --menu-shadow: 0 8px 24px rgba(49, 48, 46, 0.08);
+  --video-fallback: #211d2d;
+  --video-veil: rgba(20, 16, 31, 0.55);
+  --video-text: #ffffff;
+  --video-secondary: rgba(255, 255, 255, 0.9);
   --motion-fast: 140ms;
   --radius: 12px;
-  font-family: -apple-system, BlinkMacSystemFont, "Apple SD Gothic Neo", "Malgun Gothic", sans-serif;
+  font-family: "Wanted Sans", "Apple SD Gothic Neo", "Malgun Gothic", sans-serif;
   color: var(--text);
   background: var(--canvas);
   font-size: var(--font-body);
   line-height: 1.6;
 }
+:root:lang(en) { font-family: "Zalando Sans", -apple-system, BlinkMacSystemFont, sans-serif; }
+:root:lang(ja) { font-family: "Zen Kaku Gothic New", "Hiragino Kaku Gothic ProN", sans-serif; }
 
 * { box-sizing: border-box; }
 body { margin: 0; min-height: 100dvh; }
 p, h1 { margin: 0; }
 
+.background-media {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  overflow: hidden;
+  background: var(--video-fallback) url("./assets/video/background-poster.jpg") center / cover no-repeat;
+  pointer-events: none;
+}
+.background-media video {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+.background-media::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: var(--video-veil);
+}
 .page {
+  position: relative;
+  z-index: 1;
+  color: var(--video-text);
   width: min(100% - var(--space-12), var(--content-width));
   margin-inline: auto;
   padding-block: clamp(var(--space-12), 12vh, 120px) var(--space-12);
@@ -58,11 +117,55 @@ p, h1 { margin: 0; }
   flex: 1;
   text-align: center;
 }
+.coming-soon-content {
+  display: grid;
+  justify-items: center;
+  gap: var(--space-8);
+  width: 100%;
+}
+.collaboration {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-6);
+  width: 100%;
+}
+.collaboration img {
+  display: block;
+  min-width: 0;
+  height: auto;
+  object-fit: contain;
+}
+.collaboration-event { width: min(46%, 200px); }
+.collaboration-studio { width: min(42%, 190px); }
+.collaboration-mark {
+  flex: none;
+  color: var(--video-secondary);
+  font-size: 24px;
+  font-weight: 300;
+  line-height: 1;
+}
+.collaboration-compact {
+  justify-content: flex-start;
+  gap: var(--space-4);
+  margin-bottom: var(--space-8);
+}
+.collaboration-compact .collaboration-event { width: 140px; }
+.collaboration-compact .collaboration-studio { width: 130px; }
+.collaboration-compact .collaboration-mark { font-size: 18px; }
+@media (max-width: 520px) {
+  .collaboration { flex-direction: column; gap: var(--space-3); }
+  .collaboration-event { width: min(72vw, 240px); }
+  .collaboration-studio { width: min(64vw, 220px); }
+  .collaboration-compact { flex-direction: row; gap: var(--space-3); }
+  .collaboration-compact .collaboration-event { width: min(36vw, 110px); }
+  .collaboration-compact .collaboration-studio { width: min(33vw, 100px); }
+}
 .language-control:not([hidden]) {
   position: relative;
   width: fit-content;
   margin: var(--space-8) 0 0 auto;
-  color: var(--secondary);
+  color: var(--video-secondary);
   font-size: var(--font-secondary);
 }
 .language-control button {
@@ -101,6 +204,9 @@ p, h1 { margin: 0; }
 }
 .language-menu:not([hidden]) { display: grid; gap: var(--space-1); }
 .language-menu button { width: 100%; justify-content: space-between; border-radius: var(--space-2); }
+.language-menu button[lang="ko"] { font-family: "Wanted Sans", "Apple SD Gothic Neo", sans-serif; }
+.language-menu button[lang="en"] { font-family: "Zalando Sans", sans-serif; }
+.language-menu button[lang="ja"] { font-family: "Zen Kaku Gothic New", sans-serif; }
 .language-menu button:focus-visible { outline-offset: -2px; }
 .language-menu button[aria-checked="true"] { background: var(--hover); font-weight: 600; }
 .language-menu button[aria-checked="false"] svg { visibility: hidden; }
@@ -114,7 +220,7 @@ p, h1 { margin: 0; }
 }
 .eyebrow {
   margin-bottom: var(--space-4);
-  color: var(--secondary);
+  color: var(--video-secondary);
   font-size: var(--font-small);
   font-weight: 600;
   letter-spacing: 0.16em;
@@ -128,7 +234,7 @@ h1 {
 }
 .description {
   margin-top: var(--space-4);
-  color: var(--secondary);
+  color: var(--video-secondary);
   white-space: pre-line;
   word-break: keep-all;
   overflow-wrap: anywhere;
@@ -179,8 +285,8 @@ h1 {
 .stream-name { font-weight: 600; overflow-wrap: anywhere; }
 .stream-status { color: var(--secondary); font-size: var(--font-secondary); overflow-wrap: anywhere; }
 .arrow { flex: none; }
-.is-unpublished { background: transparent; }
+.is-unpublished { background: var(--surface); }
 a.stream-row:hover { background: var(--hover); }
 a.stream-row:active { background: var(--border); }
 a.stream-row:focus-visible { outline: 2px solid var(--focus); outline-offset: var(--space-1); }
-.empty { color: var(--secondary); font-size: var(--font-secondary); }
+.empty { color: var(--video-secondary); font-size: var(--font-secondary); }

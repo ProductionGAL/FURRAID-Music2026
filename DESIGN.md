@@ -1,8 +1,9 @@
 # Streaming link page
 
 ## 1. Direction
-A small, quiet pre-release link page. Warm paper background, clear Korean copy,
-and one vertical list. FUR:RAID 2026 main theme in collaboration with SNOWRICE
+A small, quiet pre-release link page. A full-viewport pastel video sits beneath
+a dark veil, white collaboration marks and clear Korean copy; the release view
+uses one vertical streaming list. FUR:RAID 2026 main theme with SNOWRICE
 STUDIO, confirmed by the user; unreleased. No song title, artwork or release date
 is assumed. All platform URLs remain empty until publication.
 Based on the minimalist and Notion references; scoped to a skeleton per request.
@@ -10,9 +11,15 @@ Based on the minimalist and Notion references; scoped to a skeleton per request.
 ## 2. Color
 Canvas #f7f6f3; surface #ffffff; text #31302e; secondary #615d59;
 border #dedbd5; hover #f0eeea; focus #005bab; dark button #31302e.
+Video fallback #211d2d, veil rgba(20,16,31,0.55), text #ffffff and secondary
+rgba(255,255,255,0.9) keep foreground copy readable over bright frames.
 
 ## 3. Typography
-Native system sans with Apple SD Gothic Neo and Malgun Gothic for Korean.
+Korean uses Wanted Sans Variable (400-1000); English uses Zalando Sans Variable
+(200-900); Japanese uses the open-license Zen Kaku Gothic New Regular/Bold as
+the closest geometric sans alternative to licensed Shorai Sans. Fonts are
+self-hosted in `assets/fonts/` with OFL license files and system fallbacks.
+Language-menu options use their own script's typeface.
 Title 32px, body and links 16px, secondary 14px, eyebrow 12px.
 Body line height 1.6; heading 1.35. Heading tracking -0.04em.
 
@@ -20,11 +27,25 @@ Body line height 1.6; heading 1.35. Heading tracking -0.04em.
 Single column, maximum 480px; 24px page gutters; 48px vertical padding.
 Spacing scale: 4, 8, 12, 16, 24, 32, 48px. Button radius 12px.
 Rows have a minimum 80px target and wrap long names. Natural document scrolling.
+The fixed background media fills the viewport at every breakpoint. Its 16:9 video
+uses centered `object-fit: cover`: portrait screens fit the height and crop the
+sides; wider screens crop only the excess edge without stretching the image.
+The centered coming-soon lockup places both white logos around a multiplication
+mark with 24px gaps on desktop. Below 520px it stacks event logo, mark and studio
+logo vertically with 12px gaps so both names stay legible.
+The release header keeps the same collaboration marks in a compact horizontal
+lockup at every viewport width, leaving room for the streaming list on mobile.
 
 ## 5. Components
+Background media: `assets/video/background.webm` is decorative, muted and looping.
+An H.264 MP4 source is offered as a fallback for browsers without WebM playback.
+The 1280x720 poster appears before playback and remains as the fallback image.
+The video and subtle veil sit behind both the coming-soon and release views.
 Coming-soon mode: enabled by `comingSoon: true` in site-config.js. Shows only a
-centered localized heading (곧 공개됩니다. / Coming soon. / 近日公開。) and the
-existing language control at the bottom. Uses existing canvas/type/spacing tokens.
+centered FUR:RAID 2026 × SNOWRICE STUDIO logo lockup, localized heading
+(곧 공개됩니다. / Coming soon. / 近日公開。), and the existing language control at
+the bottom. Logo group has a localized accessible name; source logos retain
+their proportions and white artwork over the dark video.
 Release content starts hidden in HTML to prevent a first-paint flash; no stream
 rows, icon requests or Spotify iframe are created in this mode. Page title and
 description also show a localized event-name/coming-soon title and generic notice.
@@ -52,20 +73,23 @@ Japanese descriptions use normal Japanese line breaking; Korean keeps words.
 Unpublished: noninteractive row, explicit “공개 예정”, no fake link or tab stop.
 Published: native anchor covering the row, destination hostname, same-tab navigation.
 Hover: tinted surface; focus: 2px outline with 4px offset; active: darker surface.
-Header: eyebrow, heading, collaboration description. No release-waiting notice or footer.
+Header: compact collaboration lockup, eyebrow, heading, collaboration description.
+No release-waiting notice or footer.
 Empty list: “스트리밍 링크를 준비하고 있어요.”
 Optional Spotify player: above the list, 152px tall, full width, 12px radius.
 Only mount an iframe for a configured Spotify track or album URL; otherwise
 the section is hidden and no Spotify resource is requested. No autoplay.
 
 ## 6. Motion
+The background video plays unless the user prefers reduced motion; in that case
+it stays paused on the poster or first frame. It has no controls or sound.
 Language menu: 140ms ease-out opacity/translateY(4px) entry; chevron rotates 180deg
 over 140ms. Reduced-motion disables both. Inspired by beui.dev select's anchored
 panel, selected indicator and outside dismissal; implemented in CSS/JS without
 dependencies. Other content has no animation.
 
 ## 7. Depth
-White row surfaces and borders on warm paper. The floating language menu alone
+White row surfaces and borders over the darkened video. The floating language menu alone
 uses 0 8px 24px rgba(49,48,46,0.08) shadow to separate it from the list beneath.
 
 ## 8. Accessibility

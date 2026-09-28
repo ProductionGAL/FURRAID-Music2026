@@ -1,5 +1,15 @@
 const config = window.siteConfig;
 const comingSoon = config.comingSoon !== false;
+const backgroundVideo = document.getElementById("background-video");
+const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
+
+function syncBackgroundVideo() {
+  if (reducedMotion.matches) backgroundVideo.pause();
+  else backgroundVideo.play().catch(() => {});
+}
+
+reducedMotion.addEventListener("change", syncBackgroundVideo);
+syncBackgroundVideo();
 
 document.getElementById("title").textContent = config.title;
 
@@ -32,6 +42,9 @@ function applyLanguage() {
     ? copy.comingSoonTitle
     : copy.description.replace(/\n/g, " ");
   document.getElementById("coming-soon-title").textContent = copy.comingSoonTitle;
+  for (const collaboration of document.querySelectorAll(".collaboration")) {
+    collaboration.setAttribute("aria-label", copy.collaboration);
+  }
   document.getElementById("eyebrow").textContent = copy.eyebrow;
   document.getElementById("description").textContent = copy.description;
   document.getElementById("language-current").textContent = copy.nativeName;
