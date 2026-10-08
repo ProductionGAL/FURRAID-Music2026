@@ -1,0 +1,46 @@
+:root {
+  --countdown-number: 40px;
+  --countdown-number-mobile: 32px;
+}
+.countdown-page .coming-soon-content { gap: var(--space-6); }
+.countdown-details { width: 100%; }
+.countdown {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: var(--space-4);
+}
+.countdown-unit { display: grid; gap: var(--space-1); }
+.countdown-number {
+  font-size: var(--countdown-number);
+  font-weight: 600;
+  line-height: 1.2;
+  font-variant-numeric: tabular-nums;
+  letter-spacing: -0.04em;
+}
+.countdown-label {
+  color: var(--video-secondary);
+  font-size: var(--font-small);
+}
+.release-time {
+  margin-top: var(--space-6);
+  color: var(--video-secondary);
+  font-size: var(--font-secondary);
+}
+.countdown-status {
+  min-height: var(--space-6);
+  margin-top: var(--space-2);
+  color: var(--video-secondary);
+  font-size: var(--font-small);
+}
+.countdown-status a { margin-left: var(--space-2); }
+.countdown-details a { color: inherit; text-underline-offset: var(--space-1); }
+.countdown-details a:focus-visible { outline: 2px solid var(--focus); outline-offset: var(--space-1); }
+.countdown-noscript { margin-top: var(--space-3); font-size: var(--font-small); }
+@media (max-width: 520px) {
+  .countdown-number { font-size: var(--countdown-number-mobile); }
+  .countdown-page .collaboration-event { width: min(64vw, 200px); }
+  .countdown-page .collaboration-studio { width: min(60vw, 185px); }
+}
+@media (max-height: 650px) {
+  .countdown-page.page { padding-block: var(--space-6); }
+}

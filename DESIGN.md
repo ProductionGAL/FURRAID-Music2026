@@ -96,3 +96,27 @@ uses 0 8px 24px rgba(49,48,46,0.08) shadow to separate it from the list beneath.
 Korean document language, semantic heading/list/link structure, visible keyboard
 focus, minimum 4.5:1 body contrast. Text wraps; no fixed content heights.
 Content and platform names are editable defaults, not confirmed release details.
+
+## 9. Scheduled redirect
+The Python-served homepage reuses the full-screen video, veil, collaboration
+lockup and bottom language menu. A four-column countdown sits below the heading,
+with white tabular numbers (40px desktop, 32px mobile), 12px unit labels and 16px
+column gaps. A 14px release-time line always states Korea time. There are no
+countdown cards or decorative number transitions. At 320px the numbers remain
+four columns and the logo stack scales to fit above them.
+Viewports below 650px tall use 24px vertical page padding to keep the bottom
+language control visible without a long empty scroll tail.
+The confirmed release is 2026-10-11 17:00 Asia/Seoul (08:00 UTC).
+Python computes remaining seconds on every status request; the browser only
+formats the returned value. Requests are serialized once per second with a
+five-second network timeout. A failed request hides stale numbers and displays a
+localized retry status. Returning to a visible tab refreshes immediately.
+Countdown updates are not a live region, to avoid announcements every second;
+connection/error state is a polite live region. A keyboard-accessible refresh
+link also serves visitors without JavaScript.
+The root and redirect endpoint recheck server time for every request and use
+no-store responses. The destination is configured only on the Python server;
+neither HTML nor the status API returns it before release. Direct access to the
+externally operated destination remains outside our control, accepted by the
+user. GitHub Pages continues showing the existing cover until the domain is
+connected to the Python deployment.
