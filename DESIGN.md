@@ -41,7 +41,7 @@ Background media: `assets/video/background.webm` is decorative, muted and loopin
 An H.264 MP4 source is offered as a fallback for browsers without WebM playback.
 The 1280x720 poster appears before playback and remains as the fallback image.
 The video and subtle veil sit behind both the coming-soon and release views.
-Coming-soon mode: enabled by `comingSoon: true` in site-config.js. Shows only a
+Coming-soon mode: enabled by an empty `redirectUrl` in site-config.js. Shows only a
 centered FUR:RAID 2026 × SNOWRICE STUDIO logo lockup, localized heading
 (곧 공개됩니다. / Coming soon. / 近日公開。), and the existing language control at
 the bottom. Logo group has a localized accessible name; source logos retain
@@ -49,8 +49,8 @@ their proportions and white artwork over the dark video.
 Release content starts hidden in HTML to prevent a first-paint flash; no stream
 rows, icon requests or Spotify iframe are created in this mode. Page title and
 description also show a localized event-name/coming-soon title and generic notice.
-Setting the flag to false restores
-the release view. This is a presentation switch, not access control for source files.
+Setting `redirectUrl` to an HTTPS destination enables same-tab navigation with
+`location.replace`. The page remains a static GitHub Pages site.
 Stream row: list item containing official platform icon, name, status, and direction indicator.
 Icon slot: 40px square, 16px gap to text; source images retain original colors and
 aspect ratio with object-fit contain. LINE MUSIC uses a 72px image in the slot to
@@ -97,26 +97,13 @@ Korean document language, semantic heading/list/link structure, visible keyboard
 focus, minimum 4.5:1 body contrast. Text wraps; no fixed content heights.
 Content and platform names are editable defaults, not confirmed release details.
 
-## 9. Scheduled redirect
-The Python-served homepage reuses the full-screen video, veil, collaboration
-lockup and bottom language menu. A four-column countdown sits below the heading,
-with white tabular numbers (40px desktop, 32px mobile), 12px unit labels and 16px
-column gaps. A 14px release-time line always states Korea time. There are no
-countdown cards or decorative number transitions. At 320px the numbers remain
-four columns and the logo stack scales to fit above them.
-Viewports below 650px tall use 24px vertical page padding to keep the bottom
-language control visible without a long empty scroll tail.
-The confirmed release is 2026-10-11 17:00 Asia/Seoul (08:00 UTC).
-Python computes remaining seconds on every status request; the browser only
-formats the returned value. Requests are serialized once per second with a
-five-second network timeout. A failed request hides stale numbers and displays a
-localized retry status. Returning to a visible tab refreshes immediately.
-Countdown updates are not a live region, to avoid announcements every second;
-connection/error state is a polite live region. A keyboard-accessible refresh
-link also serves visitors without JavaScript.
-The root and redirect endpoint recheck server time for every request and use
-no-store responses. The destination is configured only on the Python server;
-neither HTML nor the status API returns it before release. Direct access to the
-externally operated destination remains outside our control, accepted by the
-user. GitHub Pages continues showing the existing cover until the domain is
-connected to the Python deployment.
+## 9. Manual publication on GitHub Pages
+The homepage retains its video, collaboration lockup and language menu without
+a countdown or date. An empty `redirectUrl` keeps the localized cover visible.
+The operator enters the destination and pushes to main; GitHub Pages deploys the
+change. New visits or reloads then replace the current history entry with the
+HTTPS destination. Invalid, non-HTTPS and exact self-referential addresses keep
+the cover visible. The destination remains blank in source until publication.
+There is no Python runtime, timed release, admin endpoint or polling request.
+Earlier streaming-row and player specifications describe the original skeleton;
+that view is no longer served. Their original icon assets are retained.
