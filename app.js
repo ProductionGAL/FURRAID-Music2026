@@ -1,13 +1,35 @@
+function siteLanguage(preference = "auto") {
+  const browserLanguage = (navigator.languages.length ? navigator.languages : [navigator.language])
+    .map(language => language.toLowerCase().split("-")[0])
+    .find(language => Object.hasOwn(window.siteConfig.locales, language));
+  return preference === "auto" ? browserLanguage || "en" : preference;
+}
+
 function initializeSite() {
   const config = window.siteConfig;
   try {
     const destination = new URL(config.redirectUrl);
     if (destination.protocol === "https:" && destination.href !== window.location.href) {
-      window.location.replace(destination.href);
+      let preference = "auto";
+      try {
+        const saved = localStorage.getItem("fr2026-language");
+        if (Object.hasOwn(config.locales, saved)) preference = saved;
+      } catch {}
+      const language = siteLanguage(preference);
+      document.documentElement.lang = language;
+      document.title = `FUR:RAID 2026 | ${config.locales[language].redirectTitle}`;
+      document.querySelector('meta[name="description"]').content = config.locales[language].redirectTitle;
+      document.addEventListener("DOMContentLoaded", () => {
+        window.location.replace(destination.href);
+      }, { once: true });
       return;
     }
   } catch {}
+  document.addEventListener("DOMContentLoaded", initializeComingSoon, { once: true });
+}
 
+function initializeComingSoon() {
+  const config = window.siteConfig;
   const backgroundVideo = document.getElementById("background-video");
   const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
   function syncBackgroundVideo() {
@@ -31,10 +53,7 @@ function initializeSite() {
   }
 
   function applyLanguage() {
-    const browserLanguage = (navigator.languages.length ? navigator.languages : [navigator.language])
-      .map(language => language.toLowerCase().split("-")[0])
-      .find(language => Object.hasOwn(config.locales, language));
-    const language = languagePreference === "auto" ? browserLanguage || "en" : languagePreference;
+    const language = siteLanguage(languagePreference);
     const copy = config.locales[language];
     document.documentElement.lang = language;
     document.title = copy.comingSoonPageTitle;
@@ -96,6 +115,9 @@ function initializeSite() {
   });
   window.addEventListener("languagechange", applyLanguage);
   applyLanguage();
+  document.getElementById("redirect-status").hidden = true;
+  document.getElementById("coming-soon").hidden = false;
+  document.getElementById("background-media").hidden = false;
   languageControl.hidden = false;
 }
 

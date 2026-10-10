@@ -107,3 +107,9 @@ the cover visible. The destination remains blank in source until publication.
 There is no Python runtime, timed release, admin endpoint or polling request.
 Earlier streaming-row and player specifications describe the original skeleton;
 that view is no longer served. Their original icon assets are retained.
+The initial HTML displays only a centered localized redirect status on the dark
+video-fallback canvas. The cover and media start hidden. Configuration and app
+scripts run synchronously in the head before styles, images or video are parsed;
+a published HTTPS destination starts navigation on DOM readiness with no timer.
+Only an unpublished
+configuration reveals the cover after DOM readiness, preventing a cover flash.

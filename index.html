@@ -3,26 +3,29 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="곧 공개됩니다.">
+    <meta name="description" content="이동 중…">
     <meta name="theme-color" content="#211d2d">
-    <title>FUR:RAID 2026 | 곧 공개</title>
+    <title>FUR:RAID 2026 | 이동 중…</title>
+    <script src="./site-config.js"></script>
+    <script src="./app.js"></script>
     <link rel="icon" href="./favicon.ico" sizes="any">
     <link rel="icon" type="image/png" sizes="32x32" href="./assets/favicon/favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="16x16" href="./assets/favicon/favicon-16x16.png">
     <link rel="apple-touch-icon" sizes="180x180" href="./assets/favicon/apple-touch-icon.png">
     <link rel="stylesheet" href="./styles.css">
-    <script src="./site-config.js" defer></script>
-    <script src="./app.js" defer></script>
   </head>
   <body>
-    <div class="background-media" aria-hidden="true">
+    <div class="background-media" id="background-media" aria-hidden="true" hidden>
       <video id="background-video" muted loop playsinline preload="auto" poster="./assets/video/background-poster.jpg">
         <source src="./assets/video/background.webm" type="video/webm">
         <source src="./assets/video/background.mp4" type="video/mp4">
       </video>
     </div>
     <main class="page is-coming-soon">
-      <div class="coming-soon" id="coming-soon">
+      <div class="coming-soon" id="redirect-status" role="status">
+        <h1><span class="redirect-copy" lang="ko">이동 중…</span><span class="redirect-copy" lang="en">Redirecting…</span><span class="redirect-copy" lang="ja">移動中…</span></h1>
+      </div>
+      <div class="coming-soon" id="coming-soon" hidden>
         <div class="coming-soon-content">
           <div class="collaboration" id="collaboration" role="img" aria-label="FUR:RAID 2026과 SNOWRICE STUDIO의 컬래버레이션">
             <img class="collaboration-event" src="./assets/logos/furraid2026_centerlogo.png" alt="" width="1103" height="528">

@@ -63,7 +63,7 @@
   --radius: 12px;
   font-family: "Wanted Sans", "Apple SD Gothic Neo", "Malgun Gothic", sans-serif;
   color: var(--text);
-  background: var(--canvas);
+  background: var(--video-fallback);
   font-size: var(--font-body);
   line-height: 1.6;
 }
@@ -123,6 +123,10 @@ p, h1 { margin: 0; }
   gap: var(--space-8);
   width: 100%;
 }
+.redirect-copy { display: none; }
+:root:lang(ko) .redirect-copy:lang(ko),
+:root:lang(en) .redirect-copy:lang(en),
+:root:lang(ja) .redirect-copy:lang(ja) { display: inline; }
 .collaboration {
   display: flex;
   align-items: center;
