@@ -1,5 +1,5 @@
 window.siteConfig = {
-  redirectUrl: "",
+  redirectUrl: "https://linkco.re/pQCx0a1u",
   locales: {
     ko: {
       comingSoonTitle: "곧 공개됩니다.",
